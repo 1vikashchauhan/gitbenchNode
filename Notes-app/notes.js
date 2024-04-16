@@ -7,6 +7,7 @@ const  getNotes = () => {
 const addNotes = (title,body) => {
     const notes = loadNotes();
     const duplicateNotes = notes.find((note) => note.title === title);
+    debugger
     if(duplicateNotes) {
         console.log('load is exist already')
     }

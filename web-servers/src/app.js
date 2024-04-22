@@ -3,6 +3,7 @@ const path = require('path')
 const hbs = require('hbs');
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
+const calculator = require('./utils/calculator')
 
 
 const app = express();
@@ -57,6 +58,30 @@ app.get('/products', (req, res) => {
         products: []
     })
 })
+
+
+app.get('/calculate', (req, res) => {
+
+       console.log('object',req.query.firstValue,req.query.secondValue,req.query)
+    if (!req.query.firstValue || !req.query.secondValue || !req.query.operation) {
+        return res.send({
+            error: 'First Value , second value and opration name is mandatory!'
+        })
+    }
+    const num1 = parseFloat(req.query.firstValue);
+    const num2 = parseFloat(req.query.secondValue);
+    const operation = req.query.operation;
+    calculator(num1,num2,operation, (error, data) => {
+        if (error) {
+            return res.send({ error })
+        }
+
+        res.send({
+           data
+        })
+    })
+   
+})
 app.get('', (req, res) => {
     res.render('index', {
         name:"vikash",
@@ -67,6 +92,11 @@ app.get('/help', (req, res) => {
     res.render('help', {
         help:"help me please",
         title:"Help"
+    });
+})
+app.get('/calculation', (req, res) => {
+    res.render('calculation', {
+        title:'Calculator'
     });
 })
 app.get('*', (req, res) => {

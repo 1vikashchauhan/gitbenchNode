@@ -11,7 +11,14 @@
         <input type="number" id="firstValue" required>
         <label for="secondValue">Number 2:</label>
         <input type="number" id="secondValue" required>
-       <input type="text" id="operation"  placeholder="Enter operation (add, subtract, multiply, divide, percentage)" required>
+         <select  id="operation">
+            <option value="select">Select</option>
+            <option value="add">Addtion</option>
+            <option value="subtract">Subtraction</option>
+            <option value="divide">Division</option>
+            <option value="multiplication">Multiply</option>
+            <option value="percentage">percentage</option>
+        </select>
         <button >Calculate</button>
     </form>
     <p id="message-1"></p>

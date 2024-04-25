@@ -1,6 +1,8 @@
 
 const calculator = (firstValue,secondValue,operationName,callback) => {
 
+    console.log('oprationNAme',operationName);
+
    
     if (operationName === "add") {
         callback(undefined,firstValue + secondValue);

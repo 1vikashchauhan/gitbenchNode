@@ -17,10 +17,8 @@ let operationName = ''
 });
 calculateForm.addEventListener('submit', (e) => {
     e.preventDefault()
-    // console.log('peter',firstValue,oprationOption);
-    // console.log('object123',value);
     messageOne.textContent = 'Loading...'
-    fetch(`http://localhost:3000/calculate?firstValue=${+ firstValue.value}&secondValue=${+ secondValue.value}&operation=${operationName}`).then((response) => {
+    fetch(`http://localhost:3000/calculate?firstValue=${+ firstValue.value}&secondValue=${+ secondValue.value}&operation=${operationName}`, {method: "POST"}).then((response) => {
         response.json().then((data) => {
             console.log('data',data);
             if (data.error) {
@@ -32,5 +30,3 @@ calculateForm.addEventListener('submit', (e) => {
         })
     })
 })
-
-console.log('cliendt sfkkdf');

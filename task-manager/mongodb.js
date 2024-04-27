@@ -1,39 +1,56 @@
-const { MongoClient } = require('mongodb');
-// or as an es module:
-// import { MongoClient } from 'mongodb'
+// CRUD create read update delete
 
-// Connection URL
-const url = 'mongodb://localhost:27017';
-const client = new MongoClient(url);
+const { MongoClient, ObjectID } = require('mongodb')
 
-// Database Name
-const dbName = 'task-manager';
+const connectionURL = 'mongodb://127.0.0.1:27017'
+const databaseName = 'task-manager'
 
-async function main() {
-  // Use connect method to connect to the server
-  await client.connect();
-  console.log('Connected successfully to server');
-  const db = client.db(dbName);
-  const collection = db.collection('users');
-
-  // the following code examples can be pasted here...
-
-  try {
-    await collection.insertOne({ 
-      name:'vikash'
-    
-    });
-   
-
-  } catch (error) {
-    if (error instanceof MongoServerError) {
-      console.log(`Error worth logging: ${error}`); // special case for some reason
+MongoClient.connect(connectionURL, { useNewUrlParser: true }, (error, client) => {
+    if (error) {
+        return console.log('Unable to connect to database!')
     }
-    throw error; // still want to crash
-  }
-}
 
-main()
-  .then(console.log)
-  .catch(console.error)
-  .finally(() => client.close());
+    const db = client.db(databaseName)
+    
+    // db.collection('users').findOne({ _id: new ObjectID("5c1113239cbfe605241f9071") }, (error, user) => {
+    //     if (error) {
+    //         return console.log('Unable to fetch')
+    //     }
+
+    //     console.log(user)
+    // })
+
+    // db.collection('users').find({ age: 27 }).toArray((error, users) => {
+    //     console.log(users)
+    // })
+
+    // db.collection('users').findOne({ name : 'sahil saini '}, (error, task) => {
+      
+    //   console.log('error',error);
+    //     console.log('task',task)
+    // })
+
+    // db.collection('tasks').find({ completed: false }).toArray((error, tasks) => {
+    //   console.log('error',error);
+    //     console.log(tasks)
+    // })
+
+    //     db.collection('users').updateOne({
+    //     _id: new ObjectID("662a34e0a89619dd14dfffdd")
+    // }, {
+    //     $set: {
+    //         name: 'mike'
+    //     }
+    // }).then((result) => {
+    //     console.log(result)
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
+      db.collection('users').deleteMany({
+        age: 27
+    }).then((result) => {
+        console.log(result)
+    }).catch((error) => {
+        console.log(error)
+    })
+})

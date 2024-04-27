@@ -60,9 +60,8 @@ app.get('/products', (req, res) => {
 })
 
 
-app.get('/calculate', (req, res) => {
+app.post('/calculate', (req, res) => {
 
-       console.log('object',req.query.firstValue,req.query.secondValue,req.query)
     if (!req.query.firstValue || !req.query.secondValue || !req.query.operation) {
         return res.send({
             error: 'First Value , second value and opration name is mandatory!'

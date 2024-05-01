@@ -1,0 +1,17 @@
+[
+    {
+      "name": "vikash",
+      "age": 25,
+      "profile": "tester"
+    },
+    {
+      "name": "rahul",
+      "age": 31,
+      "profile": "Backend"
+    },
+    {
+      "name": "geeta",
+      "age": 75,
+      "profile": "Full-stack"
+    }
+  ]

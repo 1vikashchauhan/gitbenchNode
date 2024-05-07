@@ -1,1 +1,3 @@
 write file added
+ append function working
+appended content
